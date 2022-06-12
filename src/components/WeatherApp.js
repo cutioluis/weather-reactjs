@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import WeatherForm from "../components/WeatherForm";
 import WeatherDetails from "../components/WeatherDetails";
+import WeatherMap from "../components/WeatherMap";
 
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
@@ -32,7 +33,13 @@ export default function WeatherApp() {
   return (
     <div className="weather-app">
       <WeatherForm onChangeCity={handleChangeCity} />
-      <div>{weather ? <WeatherDetails weather={weather} /> : <Loading />}</div>
+      {weather ? (
+        <>
+          <WeatherDetails weather={weather} /> <WeatherMap weather={weather} />
+        </>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }
